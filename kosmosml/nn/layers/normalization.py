@@ -5,7 +5,7 @@ import torch
 
 from . import functional as F
 
-__all__ = ["L1Normalization", "L2Normalization"]
+__all__ = ['L1Normalization', 'L2Normalization']
 
 
 class L1Normalization(torch.nn.Module):

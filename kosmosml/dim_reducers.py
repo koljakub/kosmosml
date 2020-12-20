@@ -11,7 +11,7 @@ import numpy as np
 from sklearn.decomposition import PCA, IncrementalPCA
 from sklearn.preprocessing import normalize
 
-__all__ = ["PCADimReducer"]
+__all__ = ['PCADimReducer']
 
 
 class PCADimReducer:
@@ -67,7 +67,7 @@ class PCADimReducer:
                 self._model.partial_fit(np.array(batch))
                 batch = []
 
-    def transform(self, vectors: List[np.ndarray], normalization: str = "l2") -> List[np.ndarray]:
+    def transform(self, vectors: List[np.ndarray], normalization: str = 'l2') -> List[np.ndarray]:
         """Applies a dimensionality reduction to a list of vectors.
 
         Args:

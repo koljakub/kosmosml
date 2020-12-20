@@ -6,7 +6,7 @@ import torchvision.models as models
 
 from kosmosml.nn.layers import L2Normalization, GlobalSumPool2d
 
-__all__ = ["neuralcodes_11", "neuralcodes_13", "neuralcodes_16", "neuralcodes_19"]
+__all__ = ['neuralcodes_11', 'neuralcodes_13', 'neuralcodes_16', 'neuralcodes_19']
 
 
 def _neuralcodes(arch: str) -> torch.nn.Sequential:
@@ -34,7 +34,7 @@ def neuralcodes_11() -> torch.nn.Sequential:
         VGG-11 model augmented with Global Sum Pooling and L2 normalization layers.
 
     """
-    return _neuralcodes("vgg11")
+    return _neuralcodes('vgg11')
 
 
 def neuralcodes_13() -> torch.nn.Sequential:
@@ -47,7 +47,7 @@ def neuralcodes_13() -> torch.nn.Sequential:
         VGG-13 model augmented with Global Sum Pooling and L2 normalization layers.
 
     """
-    return _neuralcodes("vgg13")
+    return _neuralcodes('vgg13')
 
 
 def neuralcodes_16() -> torch.nn.Sequential:
@@ -59,7 +59,7 @@ def neuralcodes_16() -> torch.nn.Sequential:
         VGG-16 model augmented with Global Sum Pooling and L2 normalization layers.
 
     """
-    return _neuralcodes("vgg16")
+    return _neuralcodes('vgg16')
 
 
 def neuralcodes_19() -> torch.nn.Sequential:
@@ -71,4 +71,4 @@ def neuralcodes_19() -> torch.nn.Sequential:
         VGG-19 model augmented with Global Sum Pooling and L2 normalization layers.
 
     """
-    return _neuralcodes("vgg19")
+    return _neuralcodes('vgg19')
