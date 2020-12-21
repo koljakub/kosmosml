@@ -1,3 +1,7 @@
 torch
 torchvision
 setuptools
+numpy
+joblib
+Pillow
+scikit-learn
