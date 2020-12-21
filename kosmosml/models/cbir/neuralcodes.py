@@ -1,6 +1,10 @@
 # Neural Codes for Image Retrieval <https://arxiv.org/abs/1404.1777>.
+from __future__ import annotations
+
+from io import BytesIO
 from typing import Union, List, Generator
 
+import joblib
 import numpy as np
 import torch
 from PIL import Image
@@ -108,3 +112,22 @@ class NeuralCodes16:
         """
         self.device = device
         self._backbone.to(device)
+
+    def save(self, target: Union[str, BytesIO]) -> None:
+        """Saves the model to a target file or a binary stream.
+
+        Args:
+            target: Path to a file (Recommended file extension: ".joblib") or a binary stream (BytesIO).
+
+        """
+        joblib.dump(self, target)
+
+    @staticmethod
+    def load(source: Union[str, BytesIO]) -> NeuralCodes16:
+        """Loads the model from a file or a binary stream.
+
+        Args:
+            source: Path to a file or a binary stream (BytesIO).
+
+        """
+        return joblib.load(source)
