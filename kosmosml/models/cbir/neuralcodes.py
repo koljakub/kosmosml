@@ -44,7 +44,7 @@ class NeuralCodes16:
         batch_tensor = torch.cat([self._transform_fn(img)[None, :] for img in batch_imgs]).to(self.device)
         return self._backbone(batch_tensor).squeeze().cpu().numpy()
 
-    def _backbone_emb_gen(self, images: List[Image.Image], batch_size: int) -> Generator[np.ndarray, None, None]:
+    def _gen_backbone_emb(self, images: List[Image.Image], batch_size: int) -> Generator[np.ndarray, None, None]:
         # Generator. Computes image descriptor for each of the provided images.
         # Uses batch processing.
         batch_imgs = []
@@ -58,7 +58,7 @@ class NeuralCodes16:
         if len(batch_imgs) > 0:
             yield self._extract_backbone_emb(batch_imgs)
 
-    def _pca_data_gen(self, gen_batches: Generator[np.ndarray, None, None]) -> Generator[np.ndarray, None, None]:
+    def _gen_pca_data(self, gen_batches: Generator[np.ndarray, None, None]) -> Generator[np.ndarray, None, None]:
         # Generator. Processes the batches of image descriptors and yields single image descriptors.
         # Used by the underlying PCA model in order to apply batch processing.
         for batch in gen_batches:
@@ -80,8 +80,8 @@ class NeuralCodes16:
                   must be greater than or equal to 640.
 
         """
-        gen_batches = self._backbone_emb_gen(images, batch_size_backbone)
-        X_gen = self._pca_data_gen(gen_batches)
+        gen_batches = self._gen_backbone_emb(images, batch_size_backbone)
+        X_gen = self._gen_pca_data(gen_batches)
         self._dim_reducer.fit_generator(X_gen, batch_size=batch_size_pca)
 
     def transform(self, images: Union[Image.Image, List[Image.Image]]) -> List[np.ndarray]:
@@ -120,7 +120,7 @@ class NeuralCodes16:
             target: Path to a file (Recommended file extension: ".joblib") or a binary stream (BytesIO).
 
         """
-        joblib.dump(self, target)
+        torch.save(self, target)
 
     @staticmethod
     def load(source: Union[str, BytesIO]) -> NeuralCodes16:
@@ -130,4 +130,4 @@ class NeuralCodes16:
             source: Path to a file or a binary stream (BytesIO).
 
         """
-        return joblib.load(source)
+        return torch.load(source)
