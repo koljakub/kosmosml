@@ -130,4 +130,6 @@ class NeuralCodes16:
             source: Path to a file or a binary stream (BytesIO).
 
         """
-        return torch.load(source)
+        obj = torch.load(source)
+        obj._backbone.eval()
+        return obj
