@@ -7,7 +7,7 @@ Part of project **Kosmos**: https://github.com/tomasprorok/kosmos-backend
 * Pooling and normalization layers
 * Backbone models for both Content-based image retrieval and Image captioning
 
-### Content-based image retrieval 
+### Content-based image retrieval models
 Various state of the art models are provided:
 * Neural Codes for Image Retrieval (https://arxiv.org/abs/1404.1777)
 
