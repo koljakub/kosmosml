@@ -1,6 +1,7 @@
 # KosmosML
 ### An easy-to-use library for Content-based image retrieval and Image captioning
-Part of project **Kosmos**: https://github.com/tomasprorok/kosmos-backend
+Part of **Kosmos**: https://github.com/tomasprorok/kosmos-backend, a two 
+semester project realized within courses Team Project I and II at the University of Ostrava.
 
 ## Features
 ### Custom PyTorch modules
